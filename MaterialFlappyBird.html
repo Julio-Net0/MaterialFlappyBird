@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material de Apoio - Minicurso de Programação de Jogos</title>
+    <style>
+        /* Estilos gerais da página (sem alterações) */
+        body { font-family: sans-serif; line-height: 1.6; margin: 0 auto; max-width: 800px; padding: 20px; background-color: #f4f4f4; color: #333; }
+        h1, h2 { color: #0056b3; }
+        hr { border: 0; height: 1px; background: #ddd; }
+        img { max-width: 100%; height: auto; display: block; margin: 25px auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .code-container { position: relative; margin: 20px 0; }
+        pre { background-color: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 14px; min-height: 50px; }
+        .copy-btn { position: absolute; top: 10px; right: 10px; background-color: #6c757d; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; opacity: 0.7; transition: opacity 0.3s ease, background-color 0.3s ease; }
+        .code-container:hover .copy-btn { opacity: 1; }
+        .copy-btn:hover { background-color: #5a6268; }
+        .copy-btn.copied { background-color: #28a745; }
+        .arrow {
+            background-color: #e9ecef; 
+            color: #495057; 
+            padding: 2px 8px; 
+            border-radius: 4px;
+            margin: 0 6px; 
+            font-weight: 600;
+            font-family: 'Courier New', Courier, monospace;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+        .aviso {
+            background-color: #fffbe6; 
+            border-left: 5px solid #fcc419;
+            padding: 15px 20px; 
+            margin: 20px 0; 
+            border-radius: 0 4px 4px 0; 
+        }
+        .aviso strong {
+            color: #e67700; 
+        }
+        .btn-exemplo {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+
+            display: inline-block; 
+            padding: 3px 8px; 
+            font-size: 0.9em; 
+            vertical-align: baseline;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Material de Apoio - Minicurso de Programação de Jogos</h1>
+    <p>Aqui você encontrará todos os códigos utilizados durante as aulas. Clique no botão <span class="btn-exemplo">Copiar</span> para levar o código para seu editor.</p>
+    <hr>
+
+		<h2>Parte 1: Criando a Cena Principal</h2>
+		<p>Tudo em Godot acontece dentro de <strong>Cenas</strong>. Pense nelas como os 'palcos' do seu jogo: um personagem, um item, um menu ou até o nível inteiro podem ser uma cena. O poder do Godot está na forma como ele as constrói: cada cena é uma <strong>árvore de Nós (Nodes)</strong>, onde cada nó é uma peça com uma função específica.</p>
+
+		<p>Vamos criar nossa primeira cena, que servirá como o palco principal do nosso jogo. Na aba 'Cena', clique na opção <strong>'Cena 2D'</strong>. Ao fazer isso, Godot criará automaticamente o primeiro e mais importante nó da nossa cena: o <strong>nó raiz</strong>, do tipo <code>Node2D</code>.</p>
+		<img src="./Img/01.gif" alt="Criando uma nova cena 2D na interface do Godot.">
+
+		<p>É uma boa prática dar nomes claros aos nossos nós. Clique com o botão direito no nó <code>Node2D</code> que acabou de ser criado e renomeie-o para <strong>'Principal'</strong>. Este nome nos ajudará a identificar facilmente o ponto de partida da nossa cena principal.</p>
+		<img src="./Img/02.gif" alt="Renomeando o nó raiz da cena para 'Principal'.">
+
+		<p>Com nosso nó raiz criado e nomeado, o último passo é salvar a cena. Pressione <code>Ctrl+S</code> (Ou vá em Cena <span class="arrow">&rarr;</span> Salvar Cena) para abrir a janela de salvamento. Para manter nosso projeto organizado desde o início, crie uma pasta chamada <strong>'Cenas'</strong> e salve sua cena dentro dela.</p>
+		<img src="./Img/03.gif" alt="Salvando a cena no sistema de arquivos do Godot, dentro de uma nova pasta.">
+
+		<hr>
+		<h2>Parte 2: Adicionando o Background</h2>
+
+		<p>Para exibir nossa imagem de fundo, usaremos o nó <code>Sprite2D</code>. Vamos adicioná-lo como um <strong>filho</strong> do nosso nó 'Principal'.</p>
+		<p>Clique com o botão direito em <strong>'Principal'</strong><span class="arrow">&rarr;</span><strong>'Adicionar Nó Filho'</strong> e selecione <code>Sprite2D</code>. Após adicioná-lo, renomeie o nó para <strong>'Background'</strong> para manter o projeto organizado.</p>
+		<p class="aviso">
+			<strong>Atenção:</strong> Ao pesquisar, aparecerão <code>Sprite2D</code> e <code>Sprite3D</code>. Como nosso jogo é 2D, garanta que escolheu a opção <code>Sprite</code>
+		</p>
+		<img src="./Img/04.gif" alt="Adicionando um nó filho Sprite2D ao nó Principal.">
+		<img src="./Img/05.gif" alt="Renomeando o novo nó Sprite2D para Background.">
+
+
+		<p>Primeiro, arraste seu arquivo de imagem (ex: <code>background.png</code>) para o painel <strong>'Sistema de Arquivos'</strong> do Godot para importá-lo. Com o nó <code>Background</code> selecionado, arraste a imagem do 'Sistema de Arquivos' para o campo <strong><code>Texture</code></strong>, no Inspetor à direita.</p>
+		<img src="./Img/06.gif" alt="Arrastando a imagem importada para o campo Texture do nó Background.">
+
+		<p>Agora, vamos definir o tamanho da tela que o jogador verá. Queremos uma largura de <strong>864 pixels</strong>.</p>
+		<p>Vá até o menu <strong>Projeto</strong><span class="arrow">&rarr;</span><strong>Configurações do Projeto...</strong>, depois navegue até <strong>Display</strong><span class="arrow">&rarr;</span><strong>Window</strong>. Altere o campo <code>Width</code> para <code>864</code>.</p>
+		<img src="./Img/07.gif" alt="Alterando a largura da janela (Viewport Width) nas configurações do projeto.">
+
+		<p>Para centralizar nossa imagem na tela, vamos ajustar seu <strong><code>Offset</code></strong>. Como a largura da tela é <code>864</code>, o centro horizontal é a metade: <code>432</code>. No Inspetor do nó <code>Background</code>, ajuste o <strong><code>Offset</code></strong> para <code>X: 432</code> e <code>Y: 220</code>.</p>
+		<img src="./Img/08.gif" alt="Ajustando os valores de Offset X e Y do nó Background para centralizar a imagem.">
+
+		<p>Excelente! Pressione <strong>F6</strong> para rodar o projeto. Você deverá ver sua imagem de fundo perfeitamente posicionada na tela do jogo.</p>
+		<img src="./Img/09.gif" alt="Executando o jogo para visualizar o background na janela.">
+
+		<hr>
+
+		<h2>Parte 3: Criando a Cena do Personagem</h2>
+		
+		<p>Para nosso personagem, vamos criar uma cena separada. Isso nos permite instanciá-lo em qualquer fase e manter seu código totalmente organizado. Comece indo em <strong>Cena</strong><span class="arrow">&rarr;</span><strong>Nova Cena</strong>.</p>
+		<p>O nó raiz ideal para um personagem jogável é o <strong><code>CharacterBody2D</code></strong>, que já vem preparado para física e movimento. Clique em <strong>'Outro Nó'</strong>, procure e selecione <code>CharacterBody2D</code>. Em seguida, renomeie o nó para <strong>'Jogador'</strong>.</p>
+		
+		<p class="aviso">
+			<strong>Atenção:</strong> Ao pesquisar, aparecerão <code>CharacterBody2D</code> e <code>CharacterBody3D</code>. Como nosso jogo é 2D, garanta que escolheu a opção correta!
+		</p>
+		
+		<p>Com o nó principal definido, pressione <code>Ctrl+S</code> para salvar. Coloque o arquivo na sua pasta <strong>'Cenas'</strong> com o nome <strong><code>jogador.tscn</code></strong> para manter a organização.</p>
+		<img src="./Img/10.gif" alt="">
+
+		<p>Um personagem em Godot é feito de 'peças'. Precisamos de, no mínimo, uma peça para a <strong>aparência</strong> e outra para a <strong>física (colisão)</strong>. Para isso, vamos adicionar dois nós filhos ao <code>Jogador</code>:</p>
+		<ul>
+			<li><strong>Para o visual:</strong> Um nó <code>Sprite2D</code>. Ele será responsável por exibir a imagem ou animação do nosso personagem.</li>
+			<li><strong>Para a colisão:</strong> Um nó <code>CollisionShape2D</code>. Este define a 'forma física' invisível do jogador, que irá interagir com paredes e outros objetos.</li>
+		</ul>
+		<p>Adicione ambos como filhos do nó <strong>'Jogador'</strong>, clicando com o botão direito sobre ele e selecionando 'Adicionar Nó Filho'.</p>
+		<img src="./Img/11.gif" alt="Adicionando os nós filhos Sprite2D e CollisionShape2D ao nó Jogador.">
+
+		<p>Para dar uma aparência ao nosso personagem, usaremos sua imagem como textura do nó <code>Sprite2D</code>. Primeiro, arraste o arquivo de imagem (ex: <code>jogador.png</code>) para o painel <strong>'Sistema de Arquivos'</strong> do Godot.</p>
+		<p>Em seguida, com o nó <code>Sprite2D</code> selecionado, arraste a imagem que acabou de importar para o campo <strong><code>Texture</code></strong>, no Inspetor à direita.</p>
+		<img src="./Img/12.gif" alt="Arrastando a textura do jogador para o nó Sprite2D no Inspetor.">
+
+		<p>Com a parte visual pronta, é hora de dar uma forma física para o jogador interagir com o mundo. Selecione o nó <strong>'CollisionShape2D'</strong>, vá na propriedade <code>Shape</code> do Inspetor e clique em <span class="arrow">&rarr;</span> <strong>'Novo CapsuleShape2D'</strong>.</p>
+		
+		<p class="aviso">
+			<strong>Atenção:</strong> Se sua colisão não estiver visível no editor, a ordem dos nós na árvore pode ser o motivo. O Godot desenha os nós de baixo para cima. Basta arrastar o nó <strong><code>CollisionShape2D</code></strong> para que ele fique abaixo do <strong><code>Sprite2D</code></strong>. Lembre-se, isso é apenas visual e não afeta a física do jogo!
+		</p>
+		<img src="./Img/13.gif" alt="Criando uma nova forma de colisão (CapsuleShape2D) e arrastando o nó para cima do Sprite2D para visualizá-la.">
+
+		<p>Nós e cenas definem a <em>estrutura</em> do nosso jogador, mas é o <strong>script</strong> que lhe dá vida e comportamento. Vamos criar um script para controlar tudo o que o 'Jogador' faz.</p>
+		<p>Clique com o botão direito no nó <strong>'Jogador'</strong><span class="arrow">&rarr;</span><strong>'Anexar Script'</strong>. Mantenha as configurações padrão na janela que aparecer e clique em 'Criar'.</p>
+		<img src="./Img/14.gif" alt="Anexando um novo script ao nó 'Jogador' na interface do Godot.">
+		
+		<p>Inicialmente, nosso script irá apenas definir as "regras do jogo" para o nosso personagem: a força da gravidade, sua velocidade máxima, etc. Copie e cole o código abaixo no seu novo arquivo <code>jogador.gd</code>.</p>
+
+		<div class="code-container">
+			<button class="copy-btn">Copiar</button>
+			<pre><code class="language-gdscript">
+const GRAVITY : int = 1000
+const MAX_VEL : int = 600
+const FLAP_SPEED : int = -500
+var flying : bool = false
+var falling : bool = false
+const START_POS = Vector2(100, 400)
+
+func _ready():
+	reset()
+
+func reset():
+	falling = false
+	flying = false
+	position = START_POS
+	set_rotation(0)
+	
+func _physics_process(delta):
+	if flying or falling:
+		velocity.y += GRAVITY * delta
+		if velocity.y > MAX_VEL:
+			velocity.y = MAX_VEL
+		if flying:
+			set_rotation(deg_to_rad(velocity.y * 0.05))
+		elif falling:
+			set_rotation(PI/2)
+		move_and_collide(velocity * delta)
+
+func flap():
+	velocity.y = FLAP_SPEED</code></pre>
+		</div>
+
+		<img src="./Img/15.gif" alt="">
+
+		<hr>
+
+		<h2>Parte 4: Orquestrando o Jogo</h2>
+		<p>Até agora, criamos as 'peças' do nosso jogo (o fundo, o jogador), mas nada as conecta. Precisamos de um 'maestro' para gerenciar o estado da partida (começou? acabou?), a pontuação e as interações. Esse será o papel do script no nosso nó <strong>'Principal'</strong>.</p>
+		<p>Volte para a sua cena <code>principal.tscn</code>. Clique com o botão direito no nó <strong>'Principal'</strong><span class="arrow">&rarr;</span><strong>'Anexar Script'</strong>.</p>
+		<img src="./Img/16.gif" alt="Anexando um novo script ao nó 'Principal' na cena principal.">
+		
+		<p>Este script será nosso 'Game Manager'. O código inicial irá preparar as variáveis para controlar o jogo e detectar o clique do mouse para iniciar a partida e fazer o jogador 'pular'.</p>
+
+		<div class="code-container">
+			<button class="copy-btn">Copiar</button>
+			<pre><code class="language-gdscript">extends Node2D
+
+var game_running : bool
+var game_over : bool
+var scroll
+var score
+const SCROLL_SPEED : int = 4
+var screen_size : Vector2i
+var ground_height : int
+var pipes : Array
+const PIPE_DELAY : int = 100
+const PIPE_RANGE : int = 200
+
+func _ready():
+	new_game()
+	
+func new_game():
+	game_running = false
+	game_over = false
+	score = 0
+	scroll = 0
+	$Jogador.reset()
+	
+func _input(event):
+	if game_over == false:
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				if game_running == false:
+					start_game()
+				else:
+					if $Jogador.flying:
+						$Jogador.flap()
+						
+func start_game():
+	game_running = true
+	$Jogador.flying = true
+	$Jogador.flap()
+</code></pre>
+		</div>
+
+		<p>Com este script, o jogo agora pode ser iniciado! Ao pressionar <strong>F6</strong> e clicar na tela, você verá que o jogador responde ao comando de 'pulo', pois o script <code>principal.gd</code> está enviando a ordem <code>flap()</code> para a cena do <code>Jogador</code>.</p>
+		<img src="./Img/17.gif" alt="Executando o jogo e clicando na tela para fazer o personagem pular.">
+
+		<hr>
+
+		<h2>Parte 5: Criando a Cena do Chão</h2>
+		<p>Agora, vamos criar o chão. Em vez de um corpo físico que bloqueia o jogador, faremos nosso chão como uma <strong>área de detecção</strong> usando o nó <strong><code>Area2D</code></strong>. Isso nos permitirá detectar facilmente quando o jogador o toca, o que será perfeito para a lógica de 'game over'.</p>
+		<p>O processo é similar ao que fizemos para o jogador, agora consolidado em passos rápidos:</p>
+		
+		<ol>
+			<li>Crie uma <strong>Nova Cena</strong> e escolha <code>Area2D</code> como o nó raiz.</li>
+			<li>Adicione dois nós filhos: um <code>Sprite2D</code> (para o visual) e um <code>CollisionShape2D</code> (para a área de detecção).</li>
+			<li>Configure os filhos: no <code>Sprite2D</code>, adicione a textura do chão; no <code>CollisionShape2D</code>, crie uma nova forma (<code>RectangleShape2D</code>) e ajuste seu tamanho.</li>
+			<li>Salve a cena como <strong><code>chao.tscn</code></strong> dentro da sua pasta 'Cenas'.</li>
+		</ol>
+
+		<p class="aviso">
+			<strong>Importante:</strong> Renomeie o nó raiz para <strong><code>Chao</code></strong> (sem o acento til ~). Usar nomes de nós sem acentos ou caracteres especiais é uma ótima prática em programação para garantir compatibilidade.
+		</p>
+		
+		<img src="./Img/18.gif" alt="Processo completo da criação da cena 'Chao': escolhendo Area2D, adicionando e configurando Sprite2D e CollisionShape2D, e salvando a cena.">
+
+		<p>Agora que temos nossa cena do chão, precisamos de uma forma de detectar quando o jogador colide com ela para que possamos reiniciar o jogo. Para criar essa comunicação entre nós, o Godot nos oferece sua ferramenta mais poderosa: os <strong>Sinais (Signals)</strong>.</p>
+		
+		<h4>O que é um Sinal?</h4>
+		<p>Pense em um Sinal como uma <strong>campainha</strong>. 
+			<ul>
+				<li>O <strong>nó</strong> que emite o sinal é como o <strong>botão da campainha</strong> na porta. Ele não sabe quem está dentro de casa, ele apenas avisa que algo aconteceu (alguém apertou o botão).</li>
+				<li>O <strong>sinal</strong> em si é o som <strong>"ding-dong"</strong>.</li>
+				<li>Outro <strong>nó</strong>, que precisa reagir a esse evento, é como a <strong>pessoa dentro de casa</strong>. Ela "conecta" uma função (ex: <em>ir atender a porta</em>) a esse som.</li>
+			</ul>
+		</p>
+		<p>Em Godot, um Sinal é exatamente isso: uma <strong>notificação</strong> que um nó emite quando um evento específico acontece (um botão é pressionado, um corpo colide, um timer termina, etc.). Outros nós podem se "conectar" a esse sinal e executar uma função em resposta, sem que um precise saber da existência do outro diretamente.</p>
+
+		<h4>Aplicando ao Nosso Jogo</h4>
+		<p>No nosso caso, o nó <strong><code>Area2D</code></strong> do <code>Chao</code> pode emitir um sinal chamado <strong><code>body_entered</code></strong>. Este sinal dispara toda vez que um corpo físico (como nosso <code>Jogador</code>, que é um <code>CharacterBody2D</code>) entra na sua área de colisão.</p>
+		
+		<p class="aviso">
+			<strong>Nosso plano será:</strong> quando o <code>Jogador</code> entrar na área do <code>Chao</code>, o <code>Chao</code> emitirá o sinal <code>body_entered</code>. Nosso script <strong><code>Principal</code></strong> (o Game Manager) irá 'ouvir' esse sinal e executar a função que reinicia o jogo.
+		</p>
+		<p>Agora, vamos programar o script do <strong><code>Chao</code></strong>. A sua única responsabilidade será a de avisar o 'Game Manager' (nosso script <strong><code>Principal</code></strong>) que o jogador colidiu com ele. Faremos isso criando nosso próprio sinal personalizado chamado <code>hit</code>.</p>
+		
+		<p>Antes de podermos emitir um sinal, precisamos declará-lo no script. É como criar um "canal de comunicação" próprio para este nó. Adicione a seguinte linha no topo do seu script <code>chao.gd</code>:</p>
+		<div class="code-container">
+			<button class="copy-btn">Copiar</button>
+			<pre><code class="language-gdscript">extends Area2D
+
+signal hit
+</code></pre>
+		</div>
+
+		<img src="./Img/19.gif" alt="">
+
+		<p>A função <code>_on_body_entered</code> é o método que o Godot executa automaticamente quando o sinal <code>body_entered</code> do nó <code>Area2D</code> é acionado. Dentro dela, vamos simplesmente emitir nosso novo sinal.</p>
+		<p class="aviso">
+			<strong>Pense assim:</strong> o script do <code>Chao</code> é um sensor de alarme. Ele não precisa saber o que fazer em uma emergência; sua única função é detectar o problema (a colisão) e <strong>apertar o botão de alarme</strong> (emitir o sinal <code>hit</code>). Quem vai ouvir e tomar uma atitude é o nosso Game Manager.
+		</p>
+		<img src="./Img/20.gif" alt="Escrevendo o código para emitir o sinal 'hit' na função _on_body_entered.">
+
+		<div class="code-container">
+			<button class="copy-btn">Copiar</button>
+			<pre><code class="language-gdscript">func _on_body_entered(body: Node2D) -> void:
+	hit.emit()
+</code></pre>
+		</div>
+
+		<p>Com nossa cena <code>chao.tscn</code> pronta e com seu script, é hora de adicioná-la ao nosso jogo. Em Godot, fazemos isso através da <strong>instanciação</strong>, que é como criar uma 'cópia funcional' de uma cena dentro de outra.</p>
+		<p>Volte para a aba da cena <code>principal.tscn</code>. No painel 'Sistema de Arquivos', encontre sua cena <strong><code>chao.tscn</code></strong> e simplesmente arraste-a para a árvore de nós, como um filho do nó <strong>'Principal'</strong>.</p>
+		
+		<p>Para posicionar o chão corretamente, selecione a nova instância do <strong>'Chao'</strong> e, no Inspetor, altere sua propriedade <strong><code>position</code></strong> para os valores <code>X: 860</code> e <code>Y: 676</code>. Isso irá alinhá-lo ao centro e na base da tela do jogo.</p>
+		<img src="./Img/21.gif" alt="Arrastando a cena chao.tscn para dentro da cena principal e ajustando sua posição no Inspetor.">
+
+		<p>Para dar a impressão que o chão está correndo infinitamente, ele deve ter o tamnho do dobro da tela e ...</p>
+		<p>Para criar esse efeito, adicionamos esse script no nosso código principal</p>
+		<p>primeiro, pegamos o tamanho da tela atual com a seguinte função dentro do _ready()</p>
+
+		<div class="code-container">
+			<button class="copy-btn">Copiar</button>
+			<pre><code class="language-gdscript">
+func _ready():
+	new_game()
+	screen_size = get_window().size
+</code></pre>
+		</div>
+<img src="./Img/22.gif" alt="">
+    <script>
+        // Função para escapar caracteres HTML que podem quebrar a página
+        function escapeHTML(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        // Função para configurar os botões de copiar
+        function setupCopyButtons() {
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const codeBlock = button.nextElementSibling.querySelector('code');
+                    const text = codeBlock.innerText;
+
+                    navigator.clipboard.writeText(text).then(() => {
+                        button.textContent = 'Copiado!';
+                        button.classList.add('copied');
+                        setTimeout(() => {
+                            button.textContent = 'Copiar';
+                            button.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Erro ao copiar texto: ', err);
+                    });
+                });
+            });
+        }
+
+        // Função principal para carregar os códigos dos arquivos .txt
+        async function loadCodeSnippets() {
+            const codeBlocks = document.querySelectorAll('pre[data-src]');
+            for (const block of codeBlocks) {
+                const codeElement = block.querySelector('code');
+                const path = block.dataset.src;
+                try {
+                    const response = await fetch(path);
+                    if (response.ok) {
+                        const codeText = await response.text();
+                        codeElement.innerHTML = escapeHTML(codeText);
+                    } else {
+                        codeElement.innerText = `Erro ao carregar o arquivo: ${path}`;
+                    }
+                } catch (error) {
+                    codeElement.innerText = `Falha na requisição para: ${path}\nLembre-se de rodar um servidor local!`;
+                    console.error(error);
+                }
+            }
+            // Após carregar todos os códigos, ativamos os botões
+            setupCopyButtons();
+        }
+
+        // Espera o conteúdo da página carregar para então executar o script
+        document.addEventListener('DOMContentLoaded', loadCodeSnippets);
+    </script>
+
+</body>
+</html>
